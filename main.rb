@@ -1,10 +1,12 @@
-require 'bcrypt'
+require_relative 'crud'
 
-my_password = BCrypt::Password.create("my password")
-  
-puts my_password
+users = [
+    { username: "mashur", password: "password1" },
+    { username: "jack", password: "password2" },
+    { username: "arya", password: "password3" },
+    { username: "jonshow", password: "password4" },
+    { username: "heisenburg", password: "password5" }
+]
 
-
-# my_password = BCrypt::Password.new("$2a$10$vI8aWBnW3fID.ZQ4/zo1G.q1lRps.9cGLcZEiGDMVr5yUP1KUOYTa")
-# my_password == "my password"     #=> true
-# my_password == "not my password" #=> false
+hashed_users = Crud.create_secure_users(users)
+puts hashed_users
