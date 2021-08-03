@@ -3,6 +3,8 @@ module Crud
 require 'bcrypt'
 puts "Module CRUD activated"
 
+#think of modules as toolkits!
+
   def Crud.create_hash_digest(password)
     BCrypt::Password.create(password)
   end
@@ -13,6 +15,9 @@ puts "Module CRUD activated"
     BCrypt::Password.new(password)
   end
 
+  #lines 14-16 --user is going to enter password
+  #and then this method is called to verify if the password is correct
+
   def Crud.create_secure_users(list_of_users)
     list_of_users.each do |user_record|
       user_record[:password] = create_hash_digest(user_record[:password])
@@ -20,6 +25,11 @@ puts "Module CRUD activated"
     list_of_users
   end
 
+  # each record is called user_record---line 21 grabs eachs users
+  #password and creates hash version password
+
+  # line 23 returns the list_of_users with hash version
+  #password unlike in line 20 when it is string password
 
 
   def Crud.authenticate_user(username, password, list_of_users)
@@ -33,6 +43,9 @@ puts "Module CRUD activated"
   end
 end
 
+#line 37-38 if individual user records username is equal to
+#the username that is passed in (which is represented by the
+#username in argument of authenticate_user) and verify_hash_digest
+#and user_record password is equal to the string password that is passed in
 
-
-# 19 through 21 takes in each users password and turns it into hash
+#if all that is the case return user record ----line 39
